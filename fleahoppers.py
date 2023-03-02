@@ -16,7 +16,7 @@ temp_threshold = 14.82
 B0 = -25.1941
 B1 = 0.0363
 
-accumulative_degree_days = []
+accumulated_degree_days = []
 temp_summation = 0
 proportions = []
 
@@ -31,7 +31,7 @@ while current_date <= end_date:
 	if degree_days < 0:
 		degree_days = 0
 	temp_summation += degree_days
-	accumulative_degree_days.append(temp_summation)
+	accumulated_degree_days.append(temp_summation)
 
 	numerator = math.exp(B0 + B1*temp_summation)
 	proportion = numerator / (1 + numerator)
@@ -39,8 +39,8 @@ while current_date <= end_date:
 
 	current_date = current_date + dt.timedelta(days=1)
 
-plt.plot(accumulative_degree_days, proportions)
-plt.title(f"Proportion of Nymph Emergence vs Accumulative Degree-Days\n{start_date.strftime('%m/%d/%Y')} to {end_date.strftime('%m/%d/%Y')}, at ({latitude}, {longitude})")
-plt.xlabel("Accumulative Degree-Days")
+plt.plot(accumulated_degree_days, proportions)
+plt.title(f"Proportion of Nymph Emergence vs Accumulated Degree-Days\n{start_date.strftime('%m/%d/%Y')} to {end_date.strftime('%m/%d/%Y')}, at ({latitude}, {longitude})")
+plt.xlabel("Accumulated Degree-Days")
 plt.ylabel("Proportion of Nymph Emergence")
 plt.savefig("fleahoppers.png") 

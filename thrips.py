@@ -17,7 +17,7 @@ sigma_values = [50, 70, 90, 120, 170]
 peak = 237			# 237 DD is how many it takes to get from egg to adult for this species
 
 temp_summation = 0
-accumulative_degree_days = []
+accumulated_degree_days = []
 thrips_magnitudes = []
 
 current_date = start_date
@@ -38,13 +38,13 @@ while current_date <= end_date:
 		part_two = exp(-(pow(temp_summation - peak * (i+1), 2)) / (2 * pow(sigma_values[i], 2)))
 		magnitude += part_one * part_two
 
-	accumulative_degree_days.append(temp_summation)
+	accumulated_degree_days.append(temp_summation)
 	thrips_magnitudes.append(magnitude)
 
 	current_date = current_date + dt.timedelta(days=1)
 
-plt.scatter(accumulative_degree_days, thrips_magnitudes) 
+plt.scatter(accumulated_degree_days, thrips_magnitudes) 
 plt.title(f"Thrips Mixture Distribution\n{start_date.strftime('%m/%d/%Y')} to {end_date.strftime('%m/%d/%Y')}, at ({latitude}, {longitude})")
-plt.xlabel("Accumulative Degree-Days")
+plt.xlabel("Accumulated Degree-Days")
 plt.ylabel("Thrips Magnitude")
 plt.savefig("thrips.png") 

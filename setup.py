@@ -3,7 +3,7 @@ import os, shutil
 import datetime as dt
 
 def get_start_date():
-	return dt.datetime.strptime("01-09-2019", "%d-%m-%Y").date()		#DDMMYYYY
+	return dt.datetime.strptime("15-11-2019", "%d-%m-%Y").date()		#DDMMYYYY
 
 def get_end_date():
 	return dt.datetime.strptime("01-04-2020", "%d-%m-%Y").date()
@@ -20,6 +20,8 @@ def get_latitude():
 def clean_data_folder(folder):
 	for filename in os.listdir(folder):
 		file_path = os.path.join(folder, filename)
+		if filename == ".gitkeep":
+			continue
 		try:
 			if os.path.isfile(file_path) or os.path.islink(file_path):
 				os.unlink(file_path)
