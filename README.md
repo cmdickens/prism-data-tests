@@ -53,8 +53,8 @@ To run `setup.py`, run `python3 setup.py`. As noted earlier, depending on the am
 
 ## Sample Graph Output
 ### Using data from September 1, 2019 to April 1, 2020 at (30.115312, -96.499281)
-Sample graph output after running fleahoppers model:
+Sample graph output after running fleahoppers model: <br>
 ![fleahoppers graph](./sample-graphs/sample-fleahoppers.png)
 
-Sample graph output after running thrips model:
+Sample graph output after running thrips model: <br>
 ![thrips graph](./sample-graphs/sample-thrips.png)
