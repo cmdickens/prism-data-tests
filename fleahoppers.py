@@ -4,6 +4,7 @@ import numpy as np
 import rasterio
 import datetime as dt
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 		
 start_date = get_start_date()
 end_date = get_end_date()
@@ -17,6 +18,7 @@ B0 = -25.1941
 B1 = 0.0363
 
 accumulated_degree_days = []
+dates = []
 temp_summation = 0
 proportions = []
 
@@ -36,11 +38,18 @@ while current_date <= end_date:
 	numerator = math.exp(B0 + B1*temp_summation)
 	proportion = numerator / (1 + numerator)
 	proportions.append(proportion)
+	
+	dates.append(current_date)
 
 	current_date = current_date + dt.timedelta(days=1)
 
-plt.plot(accumulated_degree_days, proportions)
-plt.title(f"Proportion of Nymph Emergence vs Accumulated Degree-Days\n{start_date.strftime('%m/%d/%Y')} to {end_date.strftime('%m/%d/%Y')}, at ({latitude}, {longitude})")
-plt.xlabel("Accumulated Degree-Days")
+plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%Y'))
+plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=50))
+
+plt.plot(dates, proportions)
+plt.gcf().autofmt_xdate()
+
+plt.title(f"Proportion of Nymph Emergence\n{start_date.strftime('%m/%d/%Y')} to {end_date.strftime('%m/%d/%Y')}, at ({latitude}, {longitude})")
+plt.xlabel("Dates")
 plt.ylabel("Proportion of Nymph Emergence")
 plt.savefig("fleahoppers.png") 

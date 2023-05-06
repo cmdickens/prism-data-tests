@@ -3,6 +3,7 @@ from math import exp, sqrt, pow, pi
 import rasterio
 import datetime as dt
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 		
 start_date = get_start_date()
 end_date = get_end_date()
@@ -18,6 +19,7 @@ peak = 237			# 237 DD is how many it takes to get from egg to adult for this spe
 
 temp_summation = 0
 accumulated_degree_days = []
+dates = []
 thrips_magnitudes = []
 
 current_date = start_date
@@ -40,11 +42,18 @@ while current_date <= end_date:
 
 	accumulated_degree_days.append(temp_summation)
 	thrips_magnitudes.append(magnitude)
+	
+	dates.append(current_date)
 
 	current_date = current_date + dt.timedelta(days=1)
 
-plt.scatter(accumulated_degree_days, thrips_magnitudes) 
+plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%Y'))
+plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=50))
+
+plt.plot(dates, thrips_magnitudes)
+plt.gcf().autofmt_xdate()
+
 plt.title(f"Thrips Mixture Distribution\n{start_date.strftime('%m/%d/%Y')} to {end_date.strftime('%m/%d/%Y')}, at ({latitude}, {longitude})")
-plt.xlabel("Accumulated Degree-Days")
+plt.xlabel("Dates")
 plt.ylabel("Thrips Magnitude")
 plt.savefig("thrips.png") 

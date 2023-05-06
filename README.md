@@ -49,7 +49,7 @@ Instead of using the `download-data.sh` script, the `setup.py` will be used to r
 Values for start date, end date, folder name, longitude, and latitude are all hardcoded and can be changed depending on user needs. The `setup.py` file only needs to be run once or after every change to start or end date. There will be no need to run it again if folder name, longitude, or latitude values are changed.
 
 ## Running Models
-To run `setup.py`, run `python3 setup.py`. As noted earlier, depending on the amount of files in the `daily-data` folder and date range, expect a long running time of around 10 to 20 minutes. To run the fleahoppers model, run `python3 fleahoppers.py`. This will generate an image file of a graph of Proportion of Nymph Emergence vs Accumulative Degree Days. The file will be called `fleahoppers.png`. To run the thrips mode, run `python3 thrips.py`. This will generate an image file of a graph of Thrips Magnitude vs Accumulative Degree Days. The file will be called `thrips.png`.
+To run `setup.py`, run `python3 setup.py`. As noted earlier, depending on the amount of files in the `daily-data` folder and date range, expect a long running time of around 10 to 20 minutes. To run the fleahoppers model, run `python3 fleahoppers.py`. This will generate an image file of a graph of Proportion of Nymph Emergence. The file will be called `fleahoppers.png`. To run the thrips mode, run `python3 thrips.py`. This will generate an image file of a graph of Thrips Magnitude. The file will be called `thrips.png`.
 
 ## Sample Graph Output
 ### Using data from September 1, 2019 to April 1, 2020 at (30.115312, -96.499281)
